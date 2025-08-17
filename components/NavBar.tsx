@@ -42,7 +42,9 @@ export function OurNavBar() {
             <NavbarLogo />
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">
-                <NavbarButton variant="primary">Connect with Us</NavbarButton>
+                <NavbarButton>
+                    <a href="#connect-with-us">Connect with Us</a>
+                </NavbarButton>
             </div>
             </NavBody>
 

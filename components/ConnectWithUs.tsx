@@ -4,7 +4,7 @@ import React from "react";
 
 const ConnectWithUs = () => {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16" id="connect-with-us">
       {/* Heading */}
       <header className="mb-6 md:mb-10">
         <p className="text-sm md:text-base text-zinc-500">How to,</p>
