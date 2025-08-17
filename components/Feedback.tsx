@@ -60,7 +60,7 @@ const Feedback = () => {
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 mb-10">
       {/* Header */}
       <header className="mb-8 md:mb-10">
-        <p className="text-sm md:text-base text-zinc-500">What's our,</p>
+        <p className="text-sm md:text-base text-zinc-500">What’s our,,</p>
         <h2 className="text-3xl md:text-5xl font-semibold text-zinc-900">
           Listeners think?
         </h2>
