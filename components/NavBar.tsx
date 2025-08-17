@@ -22,6 +22,14 @@ export function OurNavBar() {
         name: "The Team",
         link: "#the-team",
         },
+        {
+        name: "Contact",
+        link: "#contact",
+        },
+        {
+        name: "FAQ",
+        link: "#faq",
+        },
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
