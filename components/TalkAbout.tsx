@@ -9,18 +9,21 @@ const TalkAbout = () => {
       title: "Dreams vs Reality",
       blurb:
         "A candid look at goals, expectations, and the plot twists of your twenties—how to dream big while staying grounded.",
+      img: "/ruocake-yellow.png",
     },
     {
       name: "Theme 2",
       title: "Lifelong Learning",
       blurb:
         "School’s out, learning’s not. From careers to curiosity, we unpack how to keep growing without burning out.",
+      img: "/ruocake-pink.png",
     },
     {
       name: "Theme 3",
       title: "People and Places",
       blurb:
         "Friendships, family, romance, community—and the cities (or small towns) that shape who we’re becoming.",
+      img: "/duo-ruocake.png",
     },
   ];
 
@@ -83,7 +86,7 @@ const TalkAbout = () => {
               <div className="flex items-center gap-3 mb-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-zinc-200 bg-white overflow-hidden">
                   <img
-                    src="/ruocake.webp"
+                    src={t.img}
                     alt="RU O'Cake badge"
                     className="h-full w-full object-cover"
                   />
