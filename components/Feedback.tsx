@@ -10,6 +10,8 @@ const StarRow = () => (
 
 const Feedback = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
+  const [sending, setSending] = useState(false);
 
   const feedbacks = [
     {
@@ -55,6 +57,43 @@ const Feedback = () => {
       img: "/l3.webp",
     },
   ];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "");
+    const role = String(formData.get("role") || "");
+    const review = String(formData.get("review") || "");
+
+    if (!name || !role || !review) {
+      setStatus({ ok: false, msg: "All fields are required." });
+      return;
+    }
+    
+    setSending(true);
+
+    try {
+      const res = await fetch("/api/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, role, review }),
+      })
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || "Failed to send review");
+      }
+      setStatus({ ok: true, msg: "Review submitted successfully!" });
+      form.reset();
+    } catch (err: any) {
+      setStatus({ ok: false, msg: err?.message ?? "Failed to submit review" });
+    } finally {
+      setSending(false);
+    }
+     
+  }
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 mb-10">
@@ -102,10 +141,16 @@ const Feedback = () => {
             <h3 className="text-xl font-semibold text-zinc-900 mb-4">
               Leave a Review
             </h3>
-            <form className="space-y-4">
+            {status && (
+              <p className={`mt-3 mb-4 text-sm ${status.ok ? "text-green-600" : "text-red-600"}`}>
+                {status.msg}
+              </p>
+            )}
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm text-zinc-600">Name</label>
                 <input
+                  name="name"
                   type="text"
                   className="w-full mt-1 px-3 py-2 border border-zinc-300 rounded-lg"
                 />
@@ -113,6 +158,7 @@ const Feedback = () => {
               <div>
                 <label className="block text-sm text-zinc-600">Role</label>
                 <input
+                  name="role"
                   type="text"
                   className="w-full mt-1 px-3 py-2 border border-zinc-300 rounded-lg"
                 />
@@ -120,6 +166,7 @@ const Feedback = () => {
               <div>
                 <label className="block text-sm text-zinc-600">Feedback</label>
                 <textarea
+                  name="review"
                   rows={4}
                   className="w-full mt-1 px-3 py-2 border border-zinc-300 rounded-lg"
                 />
@@ -136,9 +183,10 @@ const Feedback = () => {
                   type="submit"
                   className="button-55"
                 >
-                  Submit
+                  {sending ? "Submitting..." : "Submit"}
                 </button>
               </div>
+              
             </form>
           </div>
         </div>
