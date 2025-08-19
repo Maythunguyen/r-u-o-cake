@@ -32,7 +32,7 @@ const ConnectWithUs = () => {
 
       {/* Instagram Reel embed (centered) */}
       <div className="flex justify-center mt-10">
-        <div className="relative w-full max-w-xl aspect-[8.6/16] md:aspect-[9.8/16] rounded-2xl overflow-hidden ring-1 ring-zinc-200">
+        <div className="relative w-full max-w-xl aspect-[8/16] md:aspect-[9.8/16] rounded-2xl overflow-hidden ring-1 ring-zinc-200">
           <iframe
             src="https://www.instagram.com/reel/DLL5rmloEHm/embed"
             className="absolute inset-0 h-full w-full"
