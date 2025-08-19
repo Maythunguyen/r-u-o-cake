@@ -55,8 +55,8 @@ const Contact = () => {
 
       setStatus({ ok: true, msg: "Message sent successfully!" });
       form.reset();
-    } catch (err: any) {
-      setStatus({ ok: false, msg: err?.message ?? "Failed to send message" });
+    } catch (err: unknown) {
+      setStatus({ ok: false, msg: (err as Error)?.message ?? "Failed to send message" });
     } finally {
       setSending(false);
     }

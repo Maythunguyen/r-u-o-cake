@@ -87,8 +87,8 @@ const Feedback = () => {
       }
       setStatus({ ok: true, msg: "Review submitted successfully!" });
       form.reset();
-    } catch (err: any) {
-      setStatus({ ok: false, msg: err?.message ?? "Failed to submit review" });
+    } catch (err: unknown) {
+      setStatus({ ok: false, msg: (err as Error)?.message ?? "Failed to submit review" });
     } finally {
       setSending(false);
     }
